@@ -13,7 +13,10 @@ class AuthProvider with ChangeNotifier {
   AppUser? get user => _user;
 
   Future<bool> login(String email, String password) async {
-    final firebaseUser = await _authService.signInWithEmailAndPassword(email, password);
+    final firebaseUser = await _authService.signInWithEmailAndPassword(
+      email,
+      password,
+    );
     if (firebaseUser != null) {
       _user = await _firestoreService.getUser(firebaseUser.uid);
       notifyListeners();
@@ -23,7 +26,10 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> signup(String name, String email, String password) async {
-    final firebaseUser = await _authService.signUpWithEmailAndPassword(email, password);
+    final firebaseUser = await _authService.signUpWithEmailAndPassword(
+      email,
+      password,
+    );
     if (firebaseUser != null) {
       await _firestoreService.saveUserData(firebaseUser.uid, name, email);
       _user = AppUser(uid: firebaseUser.uid, name: name, email: email);

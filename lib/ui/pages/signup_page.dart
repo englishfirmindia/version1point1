@@ -5,8 +5,10 @@ import '../../ui/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
   @override
-  _SignupPageState createState() => _SignupPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
 class _SignupPageState extends State<SignupPage> {
@@ -32,7 +34,9 @@ class _SignupPageState extends State<SignupPage> {
     );
     if (success) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Signup successful! Redirecting to login...')),
+        const SnackBar(
+          content: Text('Signup successful! Redirecting to login...'),
+        ),
       );
       Navigator.pushReplacementNamed(context, '/login');
     } else {
@@ -57,7 +61,10 @@ class _SignupPageState extends State<SignupPage> {
                 child: Icon(Icons.person_add, size: 50, color: Colors.white),
               ),
               const SizedBox(height: 20),
-              Text('Create an Account', style: Theme.of(context).textTheme.headlineLarge),
+              Text(
+                'Create an Account',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
               const SizedBox(height: 30),
               CustomTextField(
                 controller: _nameController,
@@ -76,14 +83,19 @@ class _SignupPageState extends State<SignupPage> {
                 labelText: 'Password',
                 prefixIcon: Icons.lock,
                 obscureText: _obscurePassword,
-                onToggleObscure: () => setState(() => _obscurePassword = !_obscurePassword),
+                onToggleObscure:
+                    () => setState(() => _obscurePassword = !_obscurePassword),
               ),
               const SizedBox(height: 24),
               CustomButton(text: 'Sign Up', onPressed: _signup),
               const SizedBox(height: 16),
               TextButton(
-                onPressed: () => Navigator.pushReplacementNamed(context, '/login'),
-                child: const Text('Already have an account? Login', style: TextStyle(color: Colors.deepPurple)),
+                onPressed:
+                    () => Navigator.pushReplacementNamed(context, '/login'),
+                child: const Text(
+                  'Already have an account? Login',
+                  style: TextStyle(color: Colors.deepPurple),
+                ),
               ),
             ],
           ),

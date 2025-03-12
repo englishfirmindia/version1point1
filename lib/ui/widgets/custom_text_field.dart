@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onToggleObscure;
 
   const CustomTextField({
+    super.key,
     required this.controller,
     required this.labelText,
     required this.prefixIcon,
@@ -23,12 +24,15 @@ class CustomTextField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         prefixIcon: Icon(prefixIcon),
-        suffixIcon: onToggleObscure != null
-            ? IconButton(
-          icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility),
-          onPressed: onToggleObscure,
-        )
-            : null,
+        suffixIcon:
+            onToggleObscure != null
+                ? IconButton(
+                  icon: Icon(
+                    obscureText ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: onToggleObscure,
+                )
+                : null,
       ),
     );
   }

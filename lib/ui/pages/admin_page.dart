@@ -6,8 +6,10 @@ import '../../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 class AdminPage extends StatefulWidget {
+  const AdminPage({super.key});
+
   @override
-  _AdminPageState createState() => _AdminPageState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
 class _AdminPageState extends State<AdminPage> {
@@ -35,9 +37,11 @@ class _AdminPageState extends State<AdminPage> {
             width: 250,
             color: Colors.grey[200],
             child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-              stream: FirebaseFirestore.instance.collection('users').snapshots(),
+              stream:
+                  FirebaseFirestore.instance.collection('users').snapshots(),
               builder: (context, snapshot) {
-                if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+                if (!snapshot.hasData)
+                  return const Center(child: CircularProgressIndicator());
                 final users = snapshot.data!.docs;
                 return ListView.builder(
                   itemCount: users.length,
@@ -56,37 +60,52 @@ class _AdminPageState extends State<AdminPage> {
             ),
           ),
           Expanded(
-            child: _selectedUserId == null
-                ? const Center(child: Text('Select a user to view chats'))
-                : StreamBuilder<List<ChatMessage>>(
-              stream: _firestoreService.getUserChats(_selectedUserId!),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) return const Center(child: CircularProgressIndicator());
-                final chats = snapshot.data!;
-                return ListView.builder(
-                  padding: const EdgeInsets.all(10),
-                  itemCount: chats.length,
-                  itemBuilder: (context, index) {
-                    final chat = chats[index];
-                    return Align(
-                      alignment: chat.isUser ? Alignment.centerRight : Alignment.centerLeft,
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        margin: const EdgeInsets.symmetric(vertical: 5),
-                        decoration: BoxDecoration(
-                          color: chat.isUser ? Colors.deepPurpleAccent : Colors.grey[300],
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Text(
-                          chat.text,
-                          style: TextStyle(color: chat.isUser ? Colors.white : Colors.black),
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+            child:
+                _selectedUserId == null
+                    ? const Center(child: Text('Select a user to view chats'))
+                    : StreamBuilder<List<ChatMessage>>(
+                      stream: _firestoreService.getUserChats(_selectedUserId!),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData)
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        final chats = snapshot.data!;
+                        return ListView.builder(
+                          padding: const EdgeInsets.all(10),
+                          itemCount: chats.length,
+                          itemBuilder: (context, index) {
+                            final chat = chats[index];
+                            return Align(
+                              alignment:
+                                  chat.isUser
+                                      ? Alignment.centerRight
+                                      : Alignment.centerLeft,
+                              child: Container(
+                                padding: const EdgeInsets.all(12),
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                decoration: BoxDecoration(
+                                  color:
+                                      chat.isUser
+                                          ? Colors.deepPurpleAccent
+                                          : Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Text(
+                                  chat.text,
+                                  style: TextStyle(
+                                    color:
+                                        chat.isUser
+                                            ? Colors.white
+                                            : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
           ),
         ],
       ),

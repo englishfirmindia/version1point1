@@ -4,7 +4,11 @@ final ThemeData appTheme = ThemeData(
   primarySwatch: Colors.deepPurple,
   scaffoldBackgroundColor: Colors.grey[100],
   textTheme: const TextTheme(
-    headlineLarge: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: Colors.deepPurple),
+    headlineLarge: TextStyle(
+      fontSize: 26,
+      fontWeight: FontWeight.bold,
+      color: Colors.deepPurple,
+    ),
     bodyMedium: TextStyle(fontSize: 16, color: Colors.black87),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(

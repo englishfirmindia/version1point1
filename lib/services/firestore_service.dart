@@ -31,7 +31,11 @@ class FirestoreService {
         .where('userId', isEqualTo: userId)
         .orderBy('timestamp')
         .snapshots()
-        .map((snapshot) =>
-        snapshot.docs.map((doc) => ChatMessage.fromFirestore(doc.data())).toList());
+        .map(
+          (snapshot) =>
+              snapshot.docs
+                  .map((doc) => ChatMessage.fromFirestore(doc.data()))
+                  .toList(),
+        );
   }
 }

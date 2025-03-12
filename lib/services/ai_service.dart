@@ -16,14 +16,14 @@ class AIService {
           'parts': [
             {
               'text':
-              'You are an AI assistant created by the Englishfirm AI team to help students prepare for the PTE exam. '
+                  'You are an AI assistant created by the Englishfirm AI team to help students prepare for the PTE exam. '
                   'Your responses should be clear, concise, and relevant to PTE-related topics. '
                   'If a question is unrelated to the PTE exam, respond with: "I am designed to answer PTE-related questions only." '
-                  '\n\nStudent\'s query:\n\n$userInput'
-            }
-          ]
-        }
-      ]
+                  '\n\nStudent\'s query:\n\n$userInput',
+            },
+          ],
+        },
+      ],
     });
 
     try {
