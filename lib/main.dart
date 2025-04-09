@@ -27,16 +27,16 @@ class MyApp extends StatelessWidget {
         Provider(create: (_) => FirebaseAuthService()),
         Provider(create: (_) => FirestoreService()),
         ChangeNotifierProvider(
-          create:
-              (context) => AuthProvider(
-                context.read<FirebaseAuthService>(),
-                context.read<FirestoreService>(),
-              ),
+          create: (context) => AuthProvider(
+            context.read<FirebaseAuthService>(),
+            context.read<FirestoreService>(),
+          ),
         ),
       ],
       child: MaterialApp(
         title: 'Englishfirm AI',
         theme: appTheme,
+        debugShowCheckedModeBanner: false,
         initialRoute: '/login',
         routes: {
           '/login': (context) => LoginPage(),
